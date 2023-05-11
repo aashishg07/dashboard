@@ -1,7 +1,8 @@
 from .serializers import *
-from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.response import Response
+from django.contrib.auth.models import User
+
 
 class ProductListViews(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -99,3 +100,54 @@ class TransactionListView(generics.ListCreateAPIView):
 class TransactionDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Transactions.objects.all()
     serializer_class = TransactionSerializer
+
+
+class ListCoupnsView(generics.ListCreateAPIView):
+    queryset = ListCoupons.objects.all()
+    serializer_class = ListCouponsSerializer
+
+class ListCoupnsDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ListCoupons.objects.all()
+    serializer_class = ListCouponsSerializer
+
+
+class CreateCouponsListView(generics.ListCreateAPIView):
+    queryset = CreateCoupons.objects.all()
+    serializer_class = CreateCouponsSerializer
+
+class CreateCouponsDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CreateCoupons.objects.all()
+    serializer_class = CreateCouponsSerializer
+
+
+class ProductRelatedPermissionListView(generics.ListCreateAPIView):
+    queryset = ProductRelatedPermission.objects.all()
+    serializer_class = ProductRelatedPermissionSerializer
+
+class ProductRelatedPermissionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ProductRelatedPermission.objects.all()
+    serializer_class = ProductRelatedPermissionSerializer
+
+class CategoryRelatedPermissionListView(generics.ListCreateAPIView):
+    queryset = CategoryRelatedPermission.objects.all()
+    serializer_class = CategoryRelatedPermissionSerializer
+
+class CategoryRelatedPermissionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CategoryRelatedPermission.objects.all()
+    serializer_class = CategoryRelatedPermissionSerializer
+
+class TaxesListView(generics.ListCreateAPIView):
+    queryset = Taxes.objects.all()
+    serializer_class = TaxesSerializer
+
+class TaxesDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Taxes.objects.all()
+    serializer_class = TaxesSerializer
+
+class InvoiceListView(generics.ListCreateAPIView):
+    queryset = Invoice.objects.all()
+    serializer_class = InvoiceSerializer
+
+class InvoiceDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Invoice.objects.all()
+    serializer_class = InvoiceSerializer

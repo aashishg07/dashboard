@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    # 'user',
     'rest_framework',
+    # 'djoser',
+    'drf_yasg',
+    # 'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +79,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dashboard.wsgi.application'
 
+# AUTH_USER_MODEL = 'user.CustomUser'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', 
+     'guardian.backends.ObjectPermissionBackend',
+)
+
+# rest framework
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSIONS_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        # "rest_framework.permissions.DjangoModelPermissions",
+    ),
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -111,11 +135,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
+
+TOKEN_EXPIRY = 18000
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -127,3 +156,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# DJOSER = {
+#     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+#     # 'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+#     'SERIALIZERS': {},
+# }

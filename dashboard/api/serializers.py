@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.models import User
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -61,4 +62,40 @@ class SalesSerializer(serializers.ModelSerializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transactions
-        fields = ['order_id', 'transaction_id', 'date', 'payment_method', 'delivery_status', 'amount']
+        fields = ['id', 'order_id', 'date', 'payment_method', 'delivery_status', 'amount']
+
+
+class CreateCouponsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CreateCoupons
+        fields = ['id', 'title', 'code', 'start_date', 'end_date', 'freeShipping', 'quantity', 'discount_type']
+
+
+
+class ListCouponsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListCoupons
+        fields = ['id', 'coupon', 'discount', 'status']
+
+
+
+class ProductRelatedPermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductRelatedPermission
+        fields = ['id', 'add_product', 'update_product', 'delete_product', 'apply_discount']
+
+
+class CategoryRelatedPermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoryRelatedPermission
+        fields = ['id', 'add_category', 'update_category', 'delete_category', 'apply_discount']
+
+class TaxesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Taxes
+        fields = ['id', 'tax_detail', 'tax_rate', 'total_tax_amount']
+
+class InvoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invoice
+        fields = ['id', 'invoice_no', 'date', 'time', 'shipping_rate', 'amount_exc_tax', 'tax', 'total_amount']
