@@ -1,8 +1,7 @@
 from .serializers import *
 from rest_framework import generics, status
 from rest_framework.response import Response
-from django.contrib.auth.models import User
-
+from user.models import CustomUser
 
 class ProductListViews(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -34,12 +33,12 @@ class DigitalProductDetailViews(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserListView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from user.models import CustomUser
 
 
 PAYMENT_METHOD = (
@@ -56,7 +56,7 @@ class DigitalProduct(models.Model):
         return self.product
 
 class ProductReview(models.Model):
-    customer_name = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    customer_name = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     product_name = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     rating = models.FloatField()
     comment = models.TextField()
